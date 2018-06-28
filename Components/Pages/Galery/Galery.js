@@ -28,25 +28,3 @@ const Galery = (props) => {
 }
 
 export default Galery
-
-//https://github.com/expo/react-native/archive/sdk-28.0.0.tar.gz
-
-
-/*
-
-
- "expo": "^28.0.0",
-    "react": "16.3.1",
-    "react-native": "https://github.com/expo/react-native/archive/sdk-28.0.0.tar.gz"
- */
-
-
-/*.map((data, index) => {
-                return (
-                    <Image
-                        key={new Date().toLocaleString() + index}
-                        style={{width: 100, height: 100}}
-                        source={{uri: data}}/>
-                )
-            })
-*/
