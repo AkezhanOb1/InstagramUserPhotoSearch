@@ -1,15 +1,21 @@
 import React from 'react'
-import {View, ScrollView, Image} from 'react-native'
+import {View, ScrollView, Image, TouchableOpacity, Alert} from 'react-native'
 import Header from '../../Header/Header'
 import styles from './GalleryStyle'
 const Galery = (props) => {
 
+    tappedPhotoHandler = (data) => {
+        props.navigation.navigate("SinglePhoto", {photo: data})
+        console.log(data)
+    }
+
     const photoList = props.navigation.getParam("photos").map((data, index) => {
         return (
-            <Image
-                key={new Date().toLocaleString() + index}
-                style={{width: 160, height: 150}}
-                source={{uri: data}}/>
+            <TouchableOpacity onPress={() => tappedPhotoHandler(data)} key={new Date().toLocaleString() + index}>
+                <Image
+                    style={{width: 160, height: 150}}
+                    source={{uri: data}}/>
+            </TouchableOpacity>
         )
     })
 
@@ -28,25 +34,3 @@ const Galery = (props) => {
 }
 
 export default Galery
-
-//https://github.com/expo/react-native/archive/sdk-28.0.0.tar.gz
-
-
-/*
-
-
- "expo": "^28.0.0",
-    "react": "16.3.1",
-    "react-native": "https://github.com/expo/react-native/archive/sdk-28.0.0.tar.gz"
- */
-
-
-/*.map((data, index) => {
-                return (
-                    <Image
-                        key={new Date().toLocaleString() + index}
-                        style={{width: 100, height: 100}}
-                        source={{uri: data}}/>
-                )
-            })
-*/

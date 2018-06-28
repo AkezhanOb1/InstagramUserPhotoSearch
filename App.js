@@ -1,6 +1,7 @@
 import React from 'react';
 import Home from './Containers/Home/Home'
 import Gallery from './Components/Pages/Galery/Galery'
+import SinglePhoto from './Components/Pages/SinglePhoto/SinglePhoto'
 import {createStackNavigator} from 'react-navigation'
 export default class App extends React.Component {
 
@@ -13,5 +14,6 @@ export default class App extends React.Component {
 
 const AppStackNavigator = createStackNavigator({
     MainPage: Home,
-    Gallery: Gallery
+    Gallery: Gallery,
+    SinglePhoto: SinglePhoto
 })
