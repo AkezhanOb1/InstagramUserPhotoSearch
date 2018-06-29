@@ -16,4 +16,4 @@ const AppStackNavigator = createStackNavigator({
     MainPage: Home,
     Gallery: Gallery,
     SinglePhoto: SinglePhoto
-})
+});

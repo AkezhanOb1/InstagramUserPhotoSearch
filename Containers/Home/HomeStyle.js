@@ -2,7 +2,7 @@ import {StyleSheet } from 'react-native'
 
 const HomeStyle = StyleSheet.create({
     wrapper: {
-        marginTop: 20,
+        marginTop: 30,
         alignItems: 'center'
     },
     content: {
@@ -24,10 +24,12 @@ const HomeStyle = StyleSheet.create({
         backgroundColor: '#000',
         borderRadius: 15
     },
+
     buttonText: {
         padding: 20,
         color: 'white'
     },
+
     inputStyle: {
         marginTop: 30,
         borderRadius: 25,
@@ -35,8 +37,8 @@ const HomeStyle = StyleSheet.create({
         height: 45,
         borderColor: 'black',
         borderWidth: 1,
+        paddingLeft: 20,
     }
-
-})
+});
 
 export default HomeStyle

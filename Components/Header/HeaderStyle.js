@@ -8,10 +8,9 @@ const HeaderStyle = StyleSheet.create({
         textAlign: 'center',
         fontWeight: '500',
         fontSize: 18,
-        padding: 20,
+        padding: 10,
         color: 'white'
     }
-
-})
+});
 
 export default HeaderStyle

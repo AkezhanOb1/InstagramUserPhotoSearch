@@ -1,47 +1,55 @@
 import React, {Component} from 'react'
-import {View, Image, TouchableOpacity, TextInput, Text} from 'react-native'
+import {View, Image, TouchableOpacity, TextInput, Text, Alert} from 'react-native'
 import Header from '../../Components/Header/Header'
 import Logo from '../../assets/robot-dev.png'
 import styles from './HomeStyle'
 class Home extends Component {
 
-
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
             text: '',
             Photos: []
         }
     }
 
-
     inputHandler = (event) => {
         this.setState({
             text: event.nativeEvent.text,
         })
-        event.nativeEvent.text = ''
-    }
 
-    urlHandler = () => {
-        const api = 'https://www.instapi.io/u/' + this.state.text
-        this.getFetch(api)
-    }
+    };
 
+    urlHandler = async() => {
+        const api = 'https://www.instapi.io/u/' + this.state.text;
+        await this.getFetch(api);
+        this.setState({
+            text: ''
+        })
+    };
 
     getFetch = async(api) => {
-        let photoArray = []
+        let photoArray = [];
+        let inputText = this.state.text;
         await fetch(api)
             .then(res => res.json())
             .then(data => data.graphql.user.edge_owner_to_timeline_media.edges.map((el)=> {
-                photoArray.push(el.node.thumbnail_src)
+                photoArray.push(el.node.thumbnail_src);
                 return el
-            }))
+            })).then(() => {
+                if(inputText) {
+                    this.props.navigation.navigate("Gallery", {photos: photoArray,
+                        text: this.state.text})
+                }else {
+                    throw new Error('error')
+                }
+            }).catch(function() {
+                     Alert.alert('Enter username')
+            });
         this.setState ({
             Photos: photoArray
-        })
-        this.props.navigation.navigate("Gallery", {photos: photoArray,
-            text: this.state.text})
-    }
+        });
+    };
     render () {
 
         return (
@@ -57,7 +65,8 @@ class Home extends Component {
                     <TextInput
                         style={styles.inputStyle}
                         onBlur={(event) => this.inputHandler(event)}
-                        value={this.state.text} />
+                        value={this.state.text}
+                        placeholder={"Enter username"}/>
                 </View>
 
                 <View style={styles.buttonWrapper}>

@@ -5,9 +5,9 @@ import styles from './GalleryStyle'
 const Galery = (props) => {
 
     tappedPhotoHandler = (data) => {
-        props.navigation.navigate("SinglePhoto", {photo: data})
+        props.navigation.navigate("SinglePhoto", {photo: data});
         console.log(data)
-    }
+    };
 
     const photoList = props.navigation.getParam("photos").map((data, index) => {
         return (
@@ -17,20 +17,20 @@ const Galery = (props) => {
                     source={{uri: data}}/>
             </TouchableOpacity>
         )
-    })
+    });
 
-    const text = props.navigation.getParam("text")
+    const text = props.navigation.getParam("text");
     return (
             <View>
                 <Header text={text}/>
                 <ScrollView>
                     <View style={styles.wrapper}>
-                        {photoList}
+                        {photoList.length === 0 ? Alert.alert("Account is private or does not exist") : photoList}
                     </View>
                 </ScrollView>
             </View>
 
         )
-}
+};
 
 export default Galery
